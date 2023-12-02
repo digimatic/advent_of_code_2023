@@ -8,6 +8,7 @@
 #include <cstddef>
 #include <tuple>
 #include <utility>
+#include <vector>
 
 namespace westerstrom
 {
@@ -98,6 +99,44 @@ namespace westerstrom
 		std::tuple_element_t<0, std::tuple<Ts...>> sum{};
 		tuple_map(a, [&sum](auto x) { sum += abs(x); });
 		return sum;
+	}
+
+	template <class T> using vec2 = std::tuple<T, T>;
+	template <class T> using vec3 = std::tuple<T, T, T>;
+	using vec2f = vec2<float>;
+	using vec3f = vec3<float>;
+	using vec2i = vec2<int>;
+	using vec3i = vec3<int>;
+
+	template <class VecT> std::tuple_element_t<0, VecT> get_x(const VecT& v) noexcept
+	{
+		return std::get<0>(v);
+	}
+
+	template <class VecT> std::tuple_element_t<1, VecT> get_y(const VecT& v) noexcept
+	{
+		return std::get<1>(v);
+	}
+
+	template <class VecT> std::tuple_element_t<2, VecT> get_z(const VecT& v) noexcept
+	{
+		return std::get<2>(v);
+	}
+
+	template <class T> std::vector<vec2<T>> neighbors3x3(const vec2<T>& v)
+	{
+		std::vector<vec2<T>> positions;
+		for(int y = -1; y <= 1; ++y)
+		{
+			for(int x = -1; x <= 1; ++x)
+			{
+				if(!(x == 0 && y == 0))
+				{
+					positions.emplace_back(get_x(v) + x, get_y(v) + y);
+				}
+			}
+		}
+		return positions;
 	}
 
 } // namespace westerstrom
