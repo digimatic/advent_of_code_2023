@@ -20,7 +20,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(day01)
 add_subdirectory(day02)
-# add_subdirectory(day03)
+add_subdirectory(day03)
 # add_subdirectory(day04)
 # add_subdirectory(day05)
 # add_subdirectory(day06)
