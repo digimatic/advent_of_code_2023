@@ -7,12 +7,17 @@ set (CMAKE_CXX_STANDARD 23)
 set (CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set (CMAKE_XCODE_ATTRIBUTE_COMPILER_INDEX_STORE_ENABLE NO)
 
+set(OLD_INCLUDE_WHAT_YOU_USE "${CMAKE_CXX_INCLUDE_WHAT_YOU_USE}")
+set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE "")
+
 Include(FetchContent)
 FetchContent_Declare(
   Catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
   GIT_TAG        v3.4.0)
 FetchContent_MakeAvailable(Catch2)
+
+set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE "${OLD_INCLUDE_WHAT_YOU_USE}")
 
 project(AdventOfCode2023-digimatic)
 
